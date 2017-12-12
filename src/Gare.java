@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gare {
+public class Gare extends Thread {
 
     private Voyageur voyageur;
     static ArrayList<Train> lestrain = new ArrayList<>();
@@ -13,7 +13,7 @@ public class Gare {
     public static void main(String[] args) {
 
         Gare gare = new Gare();
-        gare.run();
+        gare.start();
 
     }
 
