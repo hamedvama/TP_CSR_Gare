@@ -12,24 +12,21 @@ public class EspaceQuai {
     private EspaceVente espaceVente;
     private ArrayList <Train> listTrainEspQuai = new ArrayList<>();
     private ArrayList<Voyageur> listVoyAQaui = new ArrayList<>();
-    Semaphore listTrain = new Semaphore(1);
 
     public synchronized Boolean OqpVoie(Train train) throws InterruptedException {
-        System.out.println(listTrainEspQuai.size());
+
         while(nbvoie==0) {
-            System.out.println(" Pas de voie libre");
+
             train.setStateTrain(Constante.ETAT2TRAIN);
             System.out.println(train.getTrainName() + " ----  "+ train.getStateTrain());
             wait();
         }
         nbvoie--;
         train.setStateTrain(Constante.ETAT3TRAIN);
-        listTrain.acquire();
         listTrainEspQuai.add(train);
-        System.out.println(listTrainEspQuai.size());
+
         System.out.println(train.getTrainName() + " ----  "+ train.getStateTrain());
-        train.sleep(500);
-        listTrain.release();
+        train.sleep(5000);
         oqp = true;
         return oqp;
     }
@@ -39,9 +36,8 @@ public class EspaceQuai {
         nbvoie++;
         train.setStateTrain(Constante.ETAT4TRAIN);
         System.out.println(train.getTrainName() + " ----  "+ train.getStateTrain());
-        listTrain.acquire();
+        System.out.println();
         listTrainEspQuai.remove(train);
-        listTrain.release();
         notify();
         oqp = false;
     }
@@ -51,10 +47,8 @@ public class EspaceQuai {
         fin:
         while (iterator.hasNext()) {
             Train train = iterator.next();
-            System.out.println( voyageur.getNom() + " essai de monter dans letrain : " + train.getTrainName());
             monte = train.voyagmonte(voyageur);
             if (monte) {
-                System.out.println("Voyageur monté" + voyageur.getNom());
                 break fin;
             }
         }

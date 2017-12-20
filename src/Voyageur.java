@@ -17,7 +17,7 @@ public class Voyageur extends Thread {
     public Voyageur(String nom) {
         this.nom = nom;
         this.StateVoy = Constante.ETAT1VOYAGEUR;
-
+        System.out.println(this.getNom() + "  ********  " + this.getStateV());
     }
 
     public void run() {

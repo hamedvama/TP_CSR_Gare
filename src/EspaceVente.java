@@ -14,14 +14,14 @@ public class EspaceVente {
         int manque = 0;
         if (this.nbrebillet > 0) {
             nbrebillet--;
-            System.out.println("Vous pouvez chercher à embarquer..." + voyageur.getNom());
             achat = true;
             listVoyEspacVent.add(voyageur);
             voyageur.setStateV(Constante.ETAT2VOYAGEUR);
-            System.out.println("Etat du voyageur : " + voyageur.getNom() + " est : " + voyageur.getStateV());
+            System.out.println(" Etat du voyageur : " + voyageur.getNom() + " est : " + voyageur.getStateV());
+            System.out.println();
             espaceQuai.getListVoyAQaui().add(voyageur);
         } else {
-            System.out.println(" ++++ il n'y a plus de billets, veiller patientez... ");
+            System.out.println(" ++++ il n'y a plus de billets, veiller patientez ... ");
         }
         return achat;
     }

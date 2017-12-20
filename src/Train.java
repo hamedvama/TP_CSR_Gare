@@ -18,6 +18,7 @@ public class Train extends Thread {
         this.capacite = capacite;
         this.StateTrain = Constante.ETAT1TRAIN;
         this.vitesse = (int) (50 + (Math.random() * (300 - 50)));
+        System.out.println(this.getTrainName() + "  +++++++++  " + this.getStateTrain());
     }
 
     public void run() {
@@ -28,12 +29,12 @@ public class Train extends Thread {
                 e.printStackTrace();
             }
 
-            System.out.println("J'ai au total : " + listVoyDuTrain.size());
+            System.out.println();
 
             try {
                 espaceQuai.LibereVoie(this);
-                sleep(500);
-                this.capacite = 5;
+                //sleep(500);
+                //this.capacite = 5;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -46,12 +47,13 @@ public class Train extends Thread {
             this.capacite--;
             voyageur.setStateV(Constante.ETAT3VOYAGEUR);
             listVoyDuTrain.add(voyageur);
-            System.out.println(">>>> le voyageur : " + voyageur.getNom() + " est dans le train"
+            System.out.println(">>>> le voyageur : " + voyageur.getNom() + " est dans le train "
                     + this.getTrainName() + " Son etat actuel est : " + voyageur.getStateV());
             espaceQuai.getListVoyAQaui().remove(voyageur);
+            System.out.println();
             monte = true;
         } else {
-            System.out.println("Train " + this.getTrainName() + " est complet M. " + voyageur.getNom() );
+            //System.out.println("Train " + this.getTrainName() + " est complet M. " + voyageur.getNom() );
         }
         return monte;
     }
